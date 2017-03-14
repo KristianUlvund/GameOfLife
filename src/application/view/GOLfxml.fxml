@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1300.0" styleClass="borderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ViewController">
+    <right>
+        <Pane prefHeight="790.0" prefWidth="516.0" styleClass="rightPane" BorderPane.alignment="CENTER">
+            <children>
+                <VBox layoutX="16.0" layoutY="254.0" prefHeight="596.0" prefWidth="481.0" spacing="15.0" styleClass="vBox">
+                    <children>
+                        <Label text="FPS">
+                            <font>
+                                <Font name="Monospaced Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Slider fx:id="fpsSlider" blockIncrement="1.0" majorTickUnit="10.0" max="60.0" min="1.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" styleClass="sliderClass">
+                            <cursor>
+                                <Cursor fx:constant="CLOSED_HAND" />
+                            </cursor></Slider>
+                        <Label text="DropShadow">
+                            <font>
+                                <Font name="Monospaced Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Slider fx:id="dropShadow" blockIncrement="5.0" majorTickUnit="10.0" max="40.0" minorTickCount="10" showTickLabels="true" showTickMarks="true" styleClass="sliderClass">
+                            <cursor>
+                                <Cursor fx:constant="CLOSED_HAND" />
+                            </cursor></Slider>
+                        <HBox prefHeight="176.0" prefWidth="329.0">
+                            <children>
+                                <GridPane prefHeight="176.0" prefWidth="441.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="61.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="10.0" prefWidth="237.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="71.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <ToggleButton fx:id="gridMode" mnemonicParsing="false" onAction="#gridOption" prefHeight="26.0" prefWidth="135.0" selected="true" text="Grid mode" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                            <font>
+                                                <Font name="Monospaced Regular" size="14.0" />
+                                            </font>
+                                        </ToggleButton>
+                                        <ToggleButton fx:id="dragMode" mnemonicParsing="false" onAction="#dragOption" prefHeight="26.0" prefWidth="135.0" text="Drag mode" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                            <font>
+                                                <Font name="Monospaced Regular" size="14.0" />
+                                            </font>
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="toggleGroup" />
+                                            </toggleGroup>
+                                        </ToggleButton>
+                                        <ToggleButton fx:id="drawMode" mnemonicParsing="false" onAction="#drawOption" prefHeight="26.0" prefWidth="135.0" text="Draw mode" toggleGroup="$toggleGroup" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                            <font>
+                                                <Font name="Monospaced Regular" size="14.0" />
+                                            </font>
+                                        </ToggleButton>
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </HBox>
+                  <Label text="Game monitor">
+                     <font>
+                        <Font name="Monospaced Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="outPutField" onMouseMoved="#initOutPutTextArea" prefHeight="138.0" prefWidth="400.0" styleClass="outPutField">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextArea>
+                    </children>
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                    <effect>
+                        <DropShadow blurType="GAUSSIAN" height="58.07" offsetX="10.0" offsetY="10.0" radius="26.68" spread="0.1" width="50.65" />
+                    </effect>
+                </VBox>
+                <VBox layoutX="32.0" layoutY="30.0" prefHeight="263.0" prefWidth="454.0">
+                    <children>
+                        <GridPane prefHeight="261.0" prefWidth="434.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="178.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="175.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Button fx:id="newGameBtn" mnemonicParsing="false" onAction="#initNewGame" prefHeight="35.0" prefWidth="140.0" styleClass="buttonClass" text="New Game" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                    <font>
+                                        <Font name="Monospaced Regular" size="16.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="playBtn" mnemonicParsing="false" onAction="#initPlay" prefHeight="35.0" prefWidth="140.0" styleClass="buttonClass" text="Play" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                    <font>
+                                        <Font name="Monospaced Regular" size="16.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="pauseBtn" mnemonicParsing="false" onAction="#initPause" prefHeight="35.0" prefWidth="140.0" styleClass="buttonClass" text="Pause" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                    <font>
+                                        <Font name="Monospaced Regular" size="16.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="randBtn" mnemonicParsing="false" onAction="#initRandom" prefHeight="35.0" prefWidth="140.0" styleClass="buttonClass" text="Random" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                    <font>
+                                        <Font name="Monospaced Regular" size="16.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="genBtn" mnemonicParsing="false" onAction="#initGen" prefHeight="35.0" prefWidth="140.0" styleClass="buttonClass" text="Generation" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                    <font>
+                                        <Font name="Monospaced Regular" size="16.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="gifStartBtn" mnemonicParsing="false" onAction="#initStartGif" prefHeight="35.0" prefWidth="140.0" styleClass="buttonClass" text="Create GIF" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                    <font>
+                                        <Font name="Monospaced Regular" size="16.0" />
+                                    </font>
+                                </Button>
+                                <TextField fx:id="textFieldInput" onAction="#initNewBoardSize" prefHeight="31.0" prefWidth="252.0" promptText="Number of rows" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="Monospaced Regular" size="14.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets left="100.0" right="100.0" />
+                                    </GridPane.margin>
+                                </TextField>
+                            </children>
+                        </GridPane>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+    </right>
+    <center>
+        <TabPane fx:id="tabCanvas" prefHeight="200.0" prefWidth="200.0" styleClass="tabPaneClass" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="Canvas">
+                    <content>
+                        <Canvas fx:id="gameCanvas" height="761.0" width="785.0" />
+                    </content>
+                </Tab>
+                <Tab text="Statistic">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="366.0" layoutY="238.0" prefHeight="761.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="607.0" minWidth="10.0" prefWidth="607.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="387.0" minWidth="10.0" prefWidth="177.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Number of generations" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="28.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Number of dead cells" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="28.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Number of living cells" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="28.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="countGenerations" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="28.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="countDeadCells" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="28.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="countLivingCells" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="28.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Game statistic" GridPane.columnSpan="2147483647">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="69.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
+                              </Label>
+                           </children>
+                        </GridPane>
+                     </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            <Tab text="Help">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="anchorHelp">
+                     <children>
+                        <GridPane prefHeight="761.0" prefWidth="900.0" styleClass="gridPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="170.2333221435547" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="201.00759887695312" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.0" minWidth="10.0" prefWidth="201.99240112304688" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="168.03424072265625" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Game instructions" GridPane.columnSpan="2147483647">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="29.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Left mouse -&gt;" textFill="#009605" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Right mouse -&gt;" textFill="#009605" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Mouse" underline="true" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="18.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="78.0" layoutY="81.0" text="Button" underline="true" GridPane.rowIndex="10">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="18.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="48.0" layoutY="118.0" text="New Game -&gt;" textFill="#0611e0" GridPane.rowIndex="12">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="280.0" text="Play -&gt;" textFill="#0611e0" GridPane.rowIndex="13">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="312.0" text="Pause -&gt;" textFill="#0611e0" GridPane.rowIndex="14">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="312.0" text="Create GIF -&gt;" textFill="#0611e0" GridPane.rowIndex="15">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="439.0" text="Random -&gt;" textFill="#0611e0" GridPane.rowIndex="16">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="477.0" text="Generation -&gt;" textFill="#0611e0" GridPane.rowIndex="17">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="50.0" layoutY="284.0" prefHeight="23.0" prefWidth="144.0" text="Togglebutton" underline="true" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="18.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="50.0" layoutY="325.0" text="Grid mode -&gt;" textFill="#ab6708" GridPane.columnIndex="2" GridPane.rowIndex="12">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="250.0" layoutY="325.0" text="Drag mode -&gt;" textFill="#ab6708" GridPane.columnIndex="2" GridPane.rowIndex="13">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="250.0" layoutY="363.0" text="Draw mode -&gt;" textFill="#ab6708" GridPane.columnIndex="2" GridPane.rowIndex="14">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Text fill="#ab6708" strokeType="OUTSIDE" strokeWidth="0.0" text="Grid on/off" GridPane.columnIndex="3" GridPane.rowIndex="12">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#ab6708" strokeType="OUTSIDE" strokeWidth="0.0" text="Drag event on/off" GridPane.columnIndex="3" GridPane.rowIndex="13">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#ab6708" strokeType="OUTSIDE" strokeWidth="0.0" text="Draw event on/off" GridPane.columnIndex="3" GridPane.rowIndex="14">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Label layoutX="50.0" layoutY="246.0" text="Slider" underline="true" GridPane.rowIndex="19">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="18.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="50.0" layoutY="287.0" text="FPS -&gt;" textFill="#e00e0e" GridPane.rowIndex="21">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="50.0" layoutY="287.0" text="DropShadow -&gt;" textFill="#e00e0e" GridPane.rowIndex="22">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Text fill="#0611e0" layoutX="640.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empty board" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#0611e0" layoutX="202.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start animation" GridPane.columnIndex="1" GridPane.rowIndex="13">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#0611e0" layoutX="202.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pause animation" GridPane.columnIndex="1" GridPane.rowIndex="14">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#0611e0" layoutX="202.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a GIF file" GridPane.columnIndex="1" GridPane.rowIndex="15">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#0611e0" layoutX="202.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Random board" GridPane.columnIndex="1" GridPane.rowIndex="16">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#0611e0" layoutX="202.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1 generation" GridPane.columnIndex="1" GridPane.rowIndex="17">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#e00e0e" layoutX="202.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rate animation" GridPane.columnIndex="1" GridPane.rowIndex="21">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#e00e0e" layoutX="202.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shadow radius" GridPane.columnIndex="1" GridPane.rowIndex="22">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Label layoutX="50.0" layoutY="94.0" text="Default" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="16.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="242.0" layoutY="96.0" text="Drawing" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="16.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Text fill="#009605" layoutX="242.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="General maneuvering" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#009605" layoutX="242.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Draw living cells" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#009605" layoutX="242.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Draw dead cells" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#009605" layoutX="242.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Label layoutX="50.0" layoutY="155.0" text="Mouse scroll -&gt;" textFill="#009605" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Text fill="#009605" layoutX="242.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#009605" layoutX="429.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zoom in and out" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Label layoutX="80.0" layoutY="209.0" text="Keyboard" underline="true" GridPane.columnIndex="2" GridPane.rowIndex="19">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="18.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="80.0" layoutY="494.0" text="Enter -&gt;" textFill="#592310" GridPane.columnIndex="2" GridPane.rowIndex="21">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label layoutX="80.0" layoutY="494.0" text="ESC -&gt;" textFill="#592310" GridPane.columnIndex="2" GridPane.rowIndex="22">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Text fill="#592310" layoutX="256.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apply rows" GridPane.columnIndex="3" GridPane.rowIndex="21">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#592310" layoutX="256.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit fullscreen" GridPane.columnIndex="3" GridPane.rowIndex="22">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Label layoutX="80.0" layoutY="190.0" text="Double click -&gt;" textFill="#009605" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font name="Monospaced Bold Italic" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Text fill="#009605" layoutX="256.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#009605" layoutX="256.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter/Exit fullscreen" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Label layoutX="443.0" layoutY="132.0" text="Dragging" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Monospaced Bold" size="16.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Text fill="#009605" layoutX="443.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drag canvas" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#009605" strokeType="OUTSIDE" strokeWidth="0.0" text="Zoom in and out" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#009605" strokeType="OUTSIDE" strokeWidth="0.0" text="Drag canvas" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="40.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#009605" layoutX="306.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#009605" layoutX="493.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font name="Monospaced Regular" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                           </padding>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="closeApplication" mnemonicParsing="false" onAction="#initMenuItemClose" text="Close" />
+                  <MenuItem fx:id="newRleParserUrl" mnemonicParsing="false" onAction="#initRleParserUrl" text="Import pattern URL" />
+                  <MenuItem fx:id="newRleParserFile" mnemonicParsing="false" onAction="#initRleParserFile" text="Import pattern FILE" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <bottom>
+      <HBox prefHeight="85.0" prefWidth="1300.0" spacing="40.0" styleClass="styleHbox" BorderPane.alignment="CENTER">
+         <children>
+            <ColorPicker fx:id="cPickerGrid" onAction="#initColorPickerGrid" prefHeight="35.0" prefWidth="160.0" promptText="Color" styleClass="buttonClass">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ColorPicker>
+            <ColorPicker fx:id="cPickerAliveCell" onAction="#initAliveCellColor" prefHeight="35.0" prefWidth="160.0" promptText="Color" styleClass="buttonClass">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ColorPicker>
+             <MenuButton fx:id="symbolPicker" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" styleClass="buttonClass" text="Symbols">
+                 <cursor>
+                     <Cursor fx:constant="HAND" />
+                 </cursor>
+                 <items>
+                     <MenuItem fx:id="drawNormal" mnemonicParsing="false" onAction="#initNormal" text="Normal" />
+                     <MenuItem fx:id="drawSquare" mnemonicParsing="false" onAction="#initSquare" text="Square" />
+                     <MenuItem fx:id="drawGlider" mnemonicParsing="false" onAction="#initGlider" text="Glider" />
+                     <MenuItem fx:id="drawClaws" mnemonicParsing="false" onAction="#initClaws" text="Claws" />
+                     <MenuItem fx:id="drawSpaceship" mnemonicParsing="false" onAction="#initSpaceship" text="Spaceship" />
+                     <MenuItem fx:id="drawGliderGun" mnemonicParsing="false" onAction="#initGliderGun" text="Glider Gun" />
+                 </items>
+             </MenuButton>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="70.0" right="20.0" top="25.0" />
+         </padding>
+      </HBox>
+   </bottom>
+</BorderPane>
